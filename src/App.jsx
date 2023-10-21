@@ -1,5 +1,13 @@
 import './App.css';
-import { Routes, Route, Link, useParams, Outlet } from 'react-router-dom';
+import {
+    Routes,
+    Route,
+    Link,
+    useParams,
+    Outlet,
+} from 'react-router-dom';
+import { NavLink } from './NavLink';
+
 function Home() {
     return <div>Home</div>;
 }
@@ -42,6 +50,12 @@ function TacoDetails() {
     );
 }
 
+function TacoIndex() {
+    return <h1>Index Route taco</h1>;
+}
+
+
+
 function App() {
     return (
         <div className="app">
@@ -51,10 +65,10 @@ function App() {
                     <ul>
                         <li>
                             {/* con el metodo Link se aplica SPA */}
-                            <Link to="/">Home</Link>
+                            <NavLink to="/">Home</NavLink>
                         </li>
                         <li>
-                            <Link to="/search-page">Search Page</Link>
+                            <NavLink to="/search-page">Search Page</NavLink>
                         </li>
                     </ul>
                 </nav>
@@ -73,11 +87,24 @@ function App() {
                     element={<Tacos />}
                 >
                     <Route
+                        index
+                        element={<TacoIndex />}
+                    />
+                    <Route
                         path="details"
                         element={<TacoDetails />}
                     />
                 </Route>
-                <Route path='*' element={<h1>Not found</h1>}  />
+
+                <Route
+                    path="/tacos/maicoldev"
+                    element={<h1 style={{ color: 'red' }}>MaicolDev</h1>}
+                />
+
+                <Route
+                    path="*"
+                    element={<h1>Not Found 404</h1>}
+                />
             </Routes>
         </div>
     );

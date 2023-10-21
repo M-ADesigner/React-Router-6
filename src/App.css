@@ -10,3 +10,7 @@ header{
 nav ul {
     list-style: none;
 }
+
+.is-active {
+    color: red;
+}
